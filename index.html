@@ -1,0 +1,3046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swagat Veg-Nonveg | Family Restaurant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d4a574;
+            --primary-dark: #c4956a;
+            --primary-light: #e8d4c4;
+            --secondary: #5c6b5e;
+            --secondary-light: #8a9a8c;
+            --accent: #e07b54;
+            --accent-light: #f4a984;
+            --cream: #faf8f5;
+            --cream-dark: #f5f0e8;
+            --brown: #6b5344;
+            --brown-light: #8b7355;
+            --text-dark: #3d3d3d;
+            --text-light: #666666;
+            --text-muted: #999999;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 8px;
+            
+            /* Menu Section Colors */
+            --starter-bg: linear-gradient(135deg, #fef5f0 0%, #fde8dc 100%);
+            --soup-bg: linear-gradient(135deg, #f0f7f4 0%, #e0f0e8 100%);
+            --thali-bg: linear-gradient(135deg, #fef9e7 0%, #fdf2d0 100%);
+            --veg-bg: linear-gradient(135deg, #f0f8f0 0%, #e4f4e4 100%);
+            --chicken-bg: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);
+            --mutton-bg: linear-gradient(135deg, #fdf2f4 0%, #fae6ea 100%);
+            --biryani-bg: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            --paneer-bg: linear-gradient(135deg, #fefcf3 0%, #fdf6e3 100%);
+            --egg-bg: linear-gradient(135deg, #fffef5 0%, #fef9e0 100%);
+            --chinese-bg: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            --tandoor-bg: linear-gradient(135deg, #faf5f0 0%, #f5ebe0 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 5%;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 5%;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo i {
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        .nav-logo h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--brown);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            padding: 10px 22px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn.call {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .nav-btn.call:hover {
+            background: var(--secondary-light);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.order {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .nav-btn.order:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--brown);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(250, 248, 245, 0.9) 0%, rgba(232, 212, 196, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920') center/cover fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 0 20px;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 25px;
+            background: var(--white);
+            border: 2px solid var(--primary-light);
+            border-radius: 50px;
+            color: var(--brown);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            animation: fadeInUp 0.8s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-badge i {
+            color: var(--accent);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            font-family: 'Dancing Script', cursive;
+            display: block;
+            font-size: 4.5rem;
+            margin: 10px 0;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-tagline {
+            font-size: 1rem;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease 0.5s backwards;
+            font-style: italic;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .hero-btn {
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-btn.primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .hero-btn.primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hero-btn.secondary {
+            background: var(--white);
+            border: 2px solid var(--primary);
+            color: var(--brown);
+        }
+
+        .hero-btn.secondary:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            animation: fadeInUp 0.8s ease 0.8s backwards;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature {
+            text-align: center;
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-feature i {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .hero-feature p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .hero-feature strong {
+            color: var(--text-dark);
+            display: block;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator a {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-7px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary-light);
+            border-radius: 50px;
+            color: var(--brown);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .about-images {
+            position: relative;
+            height: 500px;
+        }
+
+        .about-img {
+            position: absolute;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            transition: transform 0.3s ease;
+        }
+
+        .about-img:hover {
+            transform: scale(1.02);
+        }
+
+        .about-img.main {
+            width: 75%;
+            height: 380px;
+            top: 0;
+            left: 0;
+        }
+
+        .about-img.secondary {
+            width: 60%;
+            height: 250px;
+            bottom: 0;
+            right: 0;
+            border: 6px solid var(--white);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: 100px;
+            left: 55%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            padding: 25px 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-hover);
+            z-index: 5;
+        }
+
+        .experience-badge h3 {
+            font-size: 2rem;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .experience-badge p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .about-content h2 span {
+            color: var(--accent);
+        }
+
+        .about-content > p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+        }
+
+        .about-feature i {
+            width: 45px;
+            height: 45px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .about-feature span {
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .about-info {
+            background: var(--secondary);
+            padding: 25px 30px;
+            border-radius: var(--radius);
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-item i {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .info-item div {
+            color: var(--white);
+        }
+
+        .info-item span {
+            display: block;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .info-item strong {
+            font-size: 0.95rem;
+        }
+
+        /* Menu Section - New Styles */
+        .menu {
+            background: var(--cream);
+            padding: 100px 0;
+        }
+
+        .menu .section-header {
+            padding: 0 5%;
+        }
+
+        /* Menu Category Navigation */
+        .menu-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0 5%;
+            margin-bottom: 50px;
+        }
+
+        .menu-nav-btn {
+            padding: 10px 20px;
+            background: var(--white);
+            border: 2px solid var(--primary-light);
+            border-radius: 50px;
+            color: var(--brown);
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .menu-nav-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Individual Menu Sections */
+        .menu-category {
+            padding: 80px 5%;
+            position: relative;
+        }
+
+        .menu-category:nth-child(odd) {
+            background: var(--white);
+        }
+
+        .menu-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        /* Category-specific backgrounds */
+        .menu-category.starters { background: var(--starter-bg); }
+        .menu-category.soups { background: var(--soup-bg); }
+        .menu-category.thali { background: var(--thali-bg); }
+        .menu-category.veg-main { background: var(--veg-bg); }
+        .menu-category.chicken { background: var(--chicken-bg); }
+        .menu-category.mutton { background: var(--mutton-bg); }
+        .menu-category.biryani { background: var(--biryani-bg); }
+        .menu-category.paneer { background: var(--paneer-bg); }
+        .menu-category.egg { background: var(--egg-bg); }
+        .menu-category.chinese { background: var(--chinese-bg); }
+        .menu-category.tandoor { background: var(--tandoor-bg); }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--primary-light);
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .category-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .category-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 20px auto 0;
+            border-radius: 3px;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 18px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 165, 116, 0.15);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .menu-item-info h4 {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+            font-weight: 500;
+        }
+
+        .menu-item-info .variant {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .menu-item-price {
+            background: linear-gradient(135deg, var(--primary-light), #f5e6d3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: var(--brown);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            border: 1px solid var(--primary);
+        }
+
+        /* Thali Cards - Special Styling */
+        .thali-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .thali-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 35px 25px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thali-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .thali-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .thali-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-light), var(--cream));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.2rem;
+            border: 3px solid var(--white);
+            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+        }
+
+        .thali-card h4 {
+            color: var(--text-dark);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .thali-card .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .thali-card .price span {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .thali-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, #fff9f5 0%, #fff 100%);
+        }
+
+        .thali-card.featured::after {
+            content: '⭐ Popular';
+            position: absolute;
+            top: 15px;
+            right: -25px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 60px;
+            background: linear-gradient(180deg, transparent 0%, var(--cream) 50%, transparent 100%);
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '• • •';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--primary);
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+        }
+
+        /* Menu Note */
+        .menu-note {
+            text-align: center;
+            padding: 30px;
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 700px;
+            margin: 40px auto 0;
+            border: 2px dashed var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .menu-note p {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .menu-note i {
+            margin-right: 8px;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            background: var(--white);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .review-avatar {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .review-info h4 {
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .review-stars {
+            color: #f4b942;
+            font-size: 0.85rem;
+        }
+
+        .review-text {
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 1.7;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .review-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -8px;
+            font-size: 2rem;
+            color: var(--primary);
+            font-family: serif;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--cream-dark);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .contact-card:hover {
+            transform: translateX(5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-card-icon {
+            width: 55px;
+            height: 55px;
+            background: var(--primary-light);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .contact-card-content h4 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-card-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .contact-card-content a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 8px;
+            transition: color 0.3s;
+        }
+
+        .contact-card-content a:hover {
+            color: var(--accent-light);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .contact-btn {
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .contact-btn.primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .contact-btn.primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-btn.secondary {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .contact-btn.secondary:hover {
+            background: var(--secondary-light);
+            transform: translateY(-3px);
+        }
+
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 100%;
+            min-height: 400px;
+            box-shadow: var(--shadow);
+            border: 4px solid var(--white);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        /* Notice Banner */
+        .notice-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 18px;
+            text-align: center;
+        }
+
+        .notice-banner p {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .notice-banner i {
+            margin: 0 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 60px 5% 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.2fr;
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .footer-brand h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 42px;
+            height: 42px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 35px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a i {
+            font-size: 0.7rem;
+            color: var(--primary);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact li i {
+            color: var(--primary);
+            margin-top: 4px;
+            font-size: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom span {
+            color: var(--primary);
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: var(--shadow-hover);
+            transition: all 0.3s ease;
+        }
+
+        .float-btn.whatsapp {
+            background: #25d366;
+        }
+
+        .float-btn.call {
+            background: var(--accent);
+        }
+
+        .float-btn.top {
+            background: var(--secondary);
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background: var(--white);
+            z-index: 2000;
+            padding: 80px 30px 30px;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--cream-dark);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--accent);
+            padding-left: 10px;
+        }
+
+        .mobile-nav-links i {
+            color: var(--accent);
+            width: 25px;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-links, .nav-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero h1 span {
+                font-size: 3.5rem;
+            }
+
+            .about-container, .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-images {
+                height: 400px;
+                order: -1;
+            }
+
+            .section-title {
+                font-size: 2.3rem;
+            }
+
+            .category-title {
+                font-size: 1.8rem;
+            }
+
+            .menu-category {
+                padding: 60px 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero h1 span {
+                font-size: 3rem;
+            }
+
+            .hero-features {
+                gap: 15px;
+            }
+
+            .hero-feature {
+                padding: 15px 20px;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .about-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .thali-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-section h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .menu-nav {
+                gap: 8px;
+            }
+
+            .menu-nav-btn {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero h1 span {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .hero-features {
+                flex-direction: column;
+            }
+
+            .nav-logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .thali-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .contact-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .category-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+
+            .category-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-nav-links">
+            <li><a href="#home" onclick="toggleMobileMenu()"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about" onclick="toggleMobileMenu()"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="#menu" onclick="toggleMobileMenu()"><i class="fas fa-utensils"></i> Menu</a></li>
+            <li><a href="#reviews" onclick="toggleMobileMenu()"><i class="fas fa-star"></i> Reviews</a></li>
+            <li><a href="#contact" onclick="toggleMobileMenu()"><i class="fas fa-map-marker-alt"></i> Contact</a></li>
+            <li><a href="tel:7822887750"><i class="fas fa-phone"></i> Call: 7822887750</a></li>
+            <li><a href="tel:9823760304"><i class="fas fa-phone"></i> Call: 9823760304</a></li>
+        </ul>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="#home" class="nav-logo">
+            <i class="fas fa-utensils"></i>
+            <h1>Swagat</h1>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="tel:7822887750" class="nav-btn call">
+                <i class="fas fa-phone"></i> Call Now
+            </a>
+            <a href="#menu" class="nav-btn order">
+                <i class="fas fa-book-open"></i> View Menu
+            </a>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-award"></i> Authentic Family Restaurant
+            </div>
+            <h1>
+                Welcome to
+                <span>Swagat</span>
+                Veg-Nonveg
+            </h1>
+            <p class="hero-subtitle">Family Restaurant</p>
+            <p class="hero-tagline">Where Every Meal is a Celebration of Flavors!</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="hero-btn primary">
+                    <i class="fas fa-utensils"></i> Explore Menu
+                </a>
+                <a href="tel:7822887750" class="hero-btn secondary">
+                    <i class="fas fa-phone"></i> Order Now
+                </a>
+            </div>
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <i class="fas fa-clock"></i>
+                    <p><strong>15-20 Min</strong>Prep Time</p>
+                </div>
+                <div class="hero-feature">
+                    <i class="fas fa-motorcycle"></i>
+                    <p><strong>Home Delivery</strong>Available</p>
+                </div>
+                <div class="hero-feature">
+                    <i class="fas fa-calendar-alt"></i>
+                    <p><strong>Monthly Mess</strong>Available</p>
+                </div>
+                <div class="hero-feature">
+                    <i class="fas fa-users"></i>
+                    <p><strong>Family</strong>Friendly</p>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-images">
+                <div class="about-img main">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800" alt="Restaurant Interior">
+                </div>
+                <div class="about-img secondary">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600" alt="Delicious Food">
+                </div>
+                <div class="experience-badge">
+                    <h3>100%</h3>
+                    <p>Fresh & Quality</p>
+                </div>
+            </div>
+            <div class="about-content">
+                <div class="section-badge">About Us</div>
+                <h2>Authentic Taste, <span>Family Warmth</span></h2>
+                <p>Welcome to Swagat Veg-Nonveg Family Restaurant, where we bring together the finest flavors of Indian cuisine in a warm and welcoming atmosphere. Our expert chefs prepare each dish with love, using fresh ingredients and traditional recipes.</p>
+                <p>Whether you're craving a hearty Thali, sizzling Tandoor delights, aromatic Biryani, or flavorful Chinese dishes, we have something to satisfy every palate.</p>
+                
+                <div class="about-features">
+                    <div class="about-feature">
+                        <i class="fas fa-leaf"></i>
+                        <span>Fresh Ingredients</span>
+                    </div>
+                    <div class="about-feature">
+                        <i class="fas fa-fire"></i>
+                        <span>Traditional Recipes</span>
+                    </div>
+                    <div class="about-feature">
+                        <i class="fas fa-heart"></i>
+                        <span>Made with Love</span>
+                    </div>
+                    <div class="about-feature">
+                        <i class="fas fa-medal"></i>
+                        <span>Quality Assured</span>
+                    </div>
+                </div>
+
+                <div class="about-info">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <span>Prep Time</span>
+                            <strong>15-20 Minutes</strong>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-motorcycle"></i>
+                        <div>
+                            <span>Service</span>
+                            <strong>Home Delivery</strong>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <div>
+                            <span>Special</span>
+                            <strong>Monthly Mess</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="section-header">
+            <div class="section-badge">Our Menu</div>
+            <h2 class="section-title">Explore Our <span>Delicious</span> Menu</h2>
+            <p class="section-subtitle">From traditional Thalis to exotic Chinese, discover a world of flavors crafted with passion</p>
+        </div>
+
+        <!-- Menu Quick Navigation -->
+        <div class="menu-nav">
+            <a href="#thali" class="menu-nav-btn">🍽️ Thali</a>
+            <a href="#starters" class="menu-nav-btn">🍢 Starters</a>
+            <a href="#soups" class="menu-nav-btn">🍲 Soups</a>
+            <a href="#veg-main" class="menu-nav-btn">🥦 Veg Main</a>
+            <a href="#paneer" class="menu-nav-btn">🧀 Paneer</a>
+            <a href="#chicken" class="menu-nav-btn">🍗 Chicken</a>
+            <a href="#mutton" class="menu-nav-btn">🐐 Mutton</a>
+            <a href="#biryani" class="menu-nav-btn">🍛 Biryani</a>
+            <a href="#chinese" class="menu-nav-btn">🍜 Chinese</a>
+            <a href="#egg" class="menu-nav-btn">🍳 Egg</a>
+            <a href="#tandoor" class="menu-nav-btn">🔥 Tandoor & More</a>
+        </div>
+    </section>
+
+    <!-- THALI SPECIAL -->
+    <div class="menu-category thali" id="thali">
+        <div class="category-header">
+            <div class="category-icon">🍽️</div>
+            <h3 class="category-title">Thali Special</h3>
+            <p class="category-subtitle">Complete meals served with love - Rice, Roti, Dal, Sabzi & more</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="thali-grid">
+            <div class="thali-card">
+                <div class="thali-icon">🥗</div>
+                <h4>Veg Thali</h4>
+                <div class="price">₹90<span>/-</span></div>
+            </div>
+            <div class="thali-card">
+                <div class="thali-icon">🍛</div>
+                <h4>Panjabi Thali</h4>
+                <div class="price">₹130<span>/-</span></div>
+            </div>
+            <div class="thali-card">
+                <div class="thali-icon">🥚</div>
+                <h4>Egg Thali</h4>
+                <div class="price">₹135<span>/-</span></div>
+            </div>
+            <div class="thali-card featured">
+                <div class="thali-icon">🍗</div>
+                <h4>Chicken Thali</h4>
+                <div class="price">₹230<span>/-</span></div>
+            </div>
+            <div class="thali-card">
+                <div class="thali-icon">⭐</div>
+                <h4>Spl. Chicken Thali</h4>
+                <div class="price">₹270<span>/-</span></div>
+            </div>
+            <div class="thali-card">
+                <div class="thali-icon">🐐</div>
+                <h4>Mutton Thali</h4>
+                <div class="price">₹320<span>/-</span></div>
+            </div>
+            <div class="thali-card featured">
+                <div class="thali-icon">👑</div>
+                <h4>Spl. Mutton Thali</h4>
+                <div class="price">₹350<span>/-</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STARTERS -->
+    <div class="menu-category starters" id="starters">
+        <div class="category-header">
+            <div class="category-icon">🍢</div>
+            <h3 class="category-title">Starters</h3>
+            <p class="category-subtitle">Crispy, spicy & delicious appetizers to kickstart your meal</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Gobi Manchurian</h4><span class="variant">Dry / Gravy</span></div>
+                <div class="menu-item-price">₹150/160/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Manchurian</h4><span class="variant">Dry / Gravy</span></div>
+                <div class="menu-item-price">₹170/180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Chilly</h4><span class="variant">Dry / Gravy</span></div>
+                <div class="menu-item-price">₹190/200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Crispy</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. 65</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer 65</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mashroom Crispy Chilly</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Crispy</h4></div>
+                <div class="menu-item-price">₹220/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Chilly</h4><span class="variant">Dry / Gravy</span></div>
+                <div class="menu-item-price">₹190/200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Manchurian</h4><span class="variant">Dry / Gravy</span></div>
+                <div class="menu-item-price">₹190/200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Lolipop</h4><span class="variant">Dry / Gravy</span></div>
+                <div class="menu-item-price">₹180/190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken 65</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Crispy</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Lolipop Half</h4></div>
+                <div class="menu-item-price">₹100/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Tikka Dry</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Kassori Kabab</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Malai Kabab</h4></div>
+                <div class="menu-item-price">₹210/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Pahadi Kabab</h4></div>
+                <div class="menu-item-price">₹220/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Tandoori Chicken</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹190/330/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Tikka Dry</h4></div>
+                <div class="menu-item-price">₹210/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Harabara Kabab</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Malai Kabab</h4></div>
+                <div class="menu-item-price">₹220/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Pahadi Kabab</h4></div>
+                <div class="menu-item-price">₹230/-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOUPS -->
+    <div class="menu-category soups" id="soups">
+        <div class="category-header">
+            <div class="category-icon">🍲</div>
+            <h3 class="category-title">Soups</h3>
+            <p class="category-subtitle">Warm, comforting soups to soothe your soul</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Tomato Soup</h4></div>
+                <div class="menu-item-price">₹100/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Clear Soup</h4></div>
+                <div class="menu-item-price">₹90/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Sweet Corn Soup</h4></div>
+                <div class="menu-item-price">₹100/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Hot Sour Soup</h4></div>
+                <div class="menu-item-price">₹90/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Manchow Soup</h4></div>
+                <div class="menu-item-price">₹90/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Cream of Chicken Soup</h4></div>
+                <div class="menu-item-price">₹120/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Clear Soup</h4></div>
+                <div class="menu-item-price">₹100/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Sweet Corn Soup</h4></div>
+                <div class="menu-item-price">₹110/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Manchow Soup</h4></div>
+                <div class="menu-item-price">₹120/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Hot & Sour Soup</h4></div>
+                <div class="menu-item-price">₹110/-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VEG MAIN COURSE -->
+    <div class="menu-category veg-main" id="veg-main">
+        <div class="category-header">
+            <div class="category-icon">🥦</div>
+            <h3 class="category-title">Veg Main Course</h3>
+            <p class="category-subtitle">Delicious vegetarian curries & sabzis made with fresh vegetables</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Alu Mutter</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Gobi Masala</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chana Masala</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Rajma Masala</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Dam Alo Kashmiri</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Bhindi Masala</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Baigan Masala</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Green Peas Masala</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Kaju Curry</h4></div>
+                <div class="menu-item-price">₹210/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Kaju Masala</h4></div>
+                <div class="menu-item-price">₹230/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Kaju Paneer</h4></div>
+                <div class="menu-item-price">₹240/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Kaju Mashroom</h4></div>
+                <div class="menu-item-price">₹240/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mix. Veg</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Malai Kofta</h4></div>
+                <div class="menu-item-price">₹230/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Methi Malai Mutter</h4></div>
+                <div class="menu-item-price">₹220/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mushroom Kadai</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mushroom Tawa</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mashroom Hydrabadi</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Palak Lassoni</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Plain Palak</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Shev Bhaji</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Keema</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Kolhapuri</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Makhanwala</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Bhoona</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Tawa</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Handi</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹260/400/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Kadai</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Maratha</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Kofta</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Hydrabadi</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Patiyala</h4></div>
+                <div class="menu-item-price">₹220/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Do Pyaza</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Maharaja</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Dal Fry</h4></div>
+                <div class="menu-item-price">₹120/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Dal Tadka</h4></div>
+                <div class="menu-item-price">₹130/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Dal Makhani</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Dal Maharani</h4></div>
+                <div class="menu-item-price">₹150/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Dal Methi</h4></div>
+                <div class="menu-item-price">₹140/-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEER DISHES -->
+    <div class="menu-category paneer" id="paneer">
+        <div class="category-header">
+            <div class="category-icon">🧀</div>
+            <h3 class="category-title">Paneer Dishes</h3>
+            <p class="category-subtitle">Rich & creamy cottage cheese preparations</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Palak Paneer</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Toofani</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Kadai</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Kofta</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Hydrabadi</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Methi Masala</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Angara</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Bhurji</h4></div>
+                <div class="menu-item-price">₹210/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Mutter</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Mushroom</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Kolhapuri</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Tikka Masala</h4></div>
+                <div class="menu-item-price">₹210/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Pasand</h4></div>
+                <div class="menu-item-price">₹240/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Butter Masala</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Maratha</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Masala</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Chatpata</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Chingari</h4></div>
+                <div class="menu-item-price">₹210/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Shahi Paneer</h4></div>
+                <div class="menu-item-price">₹230/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Handi</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹280/430/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Pahadi Masala</h4></div>
+                <div class="menu-item-price">₹230/-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHICKEN MAIN COURSE -->
+    <div class="menu-category chicken" id="chicken">
+        <div class="category-header">
+            <div class="category-icon">🍗</div>
+            <h3 class="category-title">Chicken Main Course</h3>
+            <p class="category-subtitle">Succulent chicken dishes cooked in authentic Indian spices</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Masala</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Curry</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Kadai</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Hydrabadi</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Kolhapuri</h4></div>
+                <div class="menu-item-price">₹210/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Fry</h4></div>
+                <div class="menu-item-price">₹190/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Moglai</h4></div>
+                <div class="menu-item-price">₹220/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Sukka</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Handi</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹300/520/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Malwani</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹350/600/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Murgh Musallam</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹360/650/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Methi Masala</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Egg Masala</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Butter Chicken</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹350/650/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Delhi Butter Chicken</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹370/700/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Kharda</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Patyala</h4></div>
+                <div class="menu-item-price">₹300/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Maratha</h4></div>
+                <div class="menu-item-price">₹220/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Tawa Masala</h4></div>
+                <div class="menu-item-price">₹250/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Tikka Masala</h4></div>
+                <div class="menu-item-price">₹230/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Pahadi</h4></div>
+                <div class="menu-item-price">₹240/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Kheema Masala</h4></div>
+                <div class="menu-item-price">₹230/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Aalni Rassa</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Kala Masala</h4></div>
+                <div class="menu-item-price">₹230/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chi. Kala Masala Handi</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹350/620/-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MUTTON / NON-VEG -->
+    <div class="menu-category mutton" id="mutton">
+        <div class="category-header">
+            <div class="category-icon">🐐</div>
+            <h3 class="category-title">Mutton / Non-Veg Special</h3>
+            <p class="category-subtitle">Premium mutton dishes with rich, aromatic gravies</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Handi</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹500/780/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Malwani</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹560/870/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Kadai</h4></div>
+                <div class="menu-item-price">₹350/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Kala Masala</h4></div>
+                <div class="menu-item-price">₹350/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Sukka / Fry</h4></div>
+                <div class="menu-item-price">₹300/310/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Masala</h4></div>
+                <div class="menu-item-price">₹330/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Curry</h4></div>
+                <div class="menu-item-price">₹310/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Kolhapuri</h4></div>
+                <div class="menu-item-price">₹330/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Rogan Josh</h4></div>
+                <div class="menu-item-price">₹370/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Hydrabadi</h4></div>
+                <div class="menu-item-price">₹350/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Kheema Masala</h4></div>
+                <div class="menu-item-price">₹330/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Kharda</h4></div>
+                <div class="menu-item-price">₹350/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Kheema Fry</h4></div>
+                <div class="menu-item-price">₹350/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Aalni Rassa</h4></div>
+                <div class="menu-item-price">₹330/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Nonveg Gravy</h4></div>
+                <div class="menu-item-price">₹110/-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BIRYANI -->
+    <div class="menu-category biryani" id="biryani">
+        <div class="category-header">
+            <div class="category-icon">🍛</div>
+            <h3 class="category-title">Biryani & Rice</h3>
+            <p class="category-subtitle">Aromatic basmati rice cooked with exotic spices</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <!-- Veg Biryani -->
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Biryani</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹140/200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Biryani</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹120/180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Hydrabadi Biryani</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹130/200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Pulav</h4></div>
+                <div class="menu-item-price">₹180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Pulav</h4></div>
+                <div class="menu-item-price">₹200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Steam Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹80/110/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Jeera Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹90/120/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Lemon Rice</h4></div>
+                <div class="menu-item-price">₹160/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Curd Rice</h4></div>
+                <div class="menu-item-price">₹160/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Masala Rice</h4></div>
+                <div class="menu-item-price">₹160/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Dal Khichadi Rice</h4></div>
+                <div class="menu-item-price">₹150/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Dal Khichadi Tadka</h4></div>
+                <div class="menu-item-price">₹160/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Garlic Rice</h4></div>
+                <div class="menu-item-price">₹170/-</div>
+            </div>
+            <!-- Nonveg Biryani -->
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Biryani</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹230/380/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Hydrabadi Biryani</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹250/400/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Mutton Dum Biryani</h4></div>
+                <div class="menu-item-price">₹330/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Biryani</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹130/200/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Hydrabadi Biryani</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹150/220/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Biryani Boneless</h4></div>
+                <div class="menu-item-price">₹280/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Egg Biryani</h4></div>
+                <div class="menu-item-price">₹150/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Dum Biryani</h4></div>
+                <div class="menu-item-price">₹260/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Tandoor Biryani</h4></div>
+                <div class="menu-item-price">₹330/-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHINESE -->
+    <div class="menu-category chinese" id="chinese">
+        <div class="category-header">
+            <div class="category-icon">🍜</div>
+            <h3 class="category-title">Chinese</h3>
+            <p class="category-subtitle">Indo-Chinese fusion with bold flavors</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Triple Fried Rice</h4></div>
+                <div class="menu-item-price">₹210/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Hakka Noodles</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹100/150/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Schezwan Noodles</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹110/160/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Singapuri Noodles</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹110/180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Fried Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹100/150/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Schezwan Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹110/160/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Hongkong Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹110/170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Hongkong Noodles</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹110/170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Egg Fried Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹100/150/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Egg Schezwan Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹110/160/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Fried Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹120/180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Schezwan Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹130/180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Singapuri Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹120/180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Hongkong Rice</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹130/180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Triple Rice</h4></div>
+                <div class="menu-item-price">₹220/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Hakka Noodles</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹120/170/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Schezwan Noodles</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹130/180/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chicken Singapuri Noodles</h4><span class="variant">H/F</span></div>
+                <div class="menu-item-price">₹130/180/-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EGG DISHES -->
+    <div class="menu-category egg" id="egg">
+        <div class="category-header">
+            <div class="category-icon">🍳</div>
+            <h3 class="category-title">Egg Dishes</h3>
+            <p class="category-subtitle">Protein-packed egg preparations</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Egg Maratha</h4></div>
+                <div class="menu-item-price">₹130/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Egg Fry</h4></div>
+                <div class="menu-item-price">₹110/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Egg Masala</h4></div>
+                <div class="menu-item-price">₹120/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Egg Curry</h4></div>
+                <div class="menu-item-price">₹110/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Egg Omlet</h4></div>
+                <div class="menu-item-price">₹70/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Egg Bhurji</h4></div>
+                <div class="menu-item-price">₹100/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Egg Boil</h4></div>
+                <div class="menu-item-price">₹40/-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TANDOOR, PARATHA, EXTRAS -->
+    <div class="menu-category tandoor" id="tandoor">
+        <div class="category-header">
+            <div class="category-icon">🔥</div>
+            <h3 class="category-title">Tandoor, Paratha, Papad, Salads & Drinks</h3>
+            <p class="category-subtitle">Fresh breads from clay oven & accompaniments</p>
+            <div class="category-divider"></div>
+        </div>
+        <div class="menu-grid">
+            <!-- Tandoor -->
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Roti</h4></div>
+                <div class="menu-item-price">₹15/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Butter Roti</h4></div>
+                <div class="menu-item-price">₹20/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Naan</h4></div>
+                <div class="menu-item-price">₹35/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Butter Naan</h4></div>
+                <div class="menu-item-price">₹45/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Garlic Butter Naan</h4></div>
+                <div class="menu-item-price">₹60/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paratha</h4></div>
+                <div class="menu-item-price">₹35/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Butter Paratha</h4></div>
+                <div class="menu-item-price">₹40/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Kulcha</h4></div>
+                <div class="menu-item-price">₹40/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Butter Kulcha</h4></div>
+                <div class="menu-item-price">₹45/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Chapati / Butter</h4></div>
+                <div class="menu-item-price">₹12/15/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Bhakri</h4></div>
+                <div class="menu-item-price">₹20/-</div>
+            </div>
+            <!-- Stuffed Paratha -->
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Alu Paratha</h4></div>
+                <div class="menu-item-price">₹85/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Gobi Paratha</h4></div>
+                <div class="menu-item-price">₹85/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Paneer Paratha</h4></div>
+                <div class="menu-item-price">₹95/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Cheese Alu Paratha</h4></div>
+                <div class="menu-item-price">₹105/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Stuff Paratha</h4></div>
+                <div class="menu-item-price">₹85/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Methi Paratha</h4></div>
+                <div class="menu-item-price">₹100/-</div>
+            </div>
+            <!-- Papad -->
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Rosted Papad</h4></div>
+                <div class="menu-item-price">₹20/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Masala Papad</h4></div>
+                <div class="menu-item-price">₹40/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Fry Papad</h4></div>
+                <div class="menu-item-price">₹30/-</div>
+            </div>
+            <!-- Salad & Raita -->
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Green Salad</h4></div>
+                <div class="menu-item-price">₹80/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Veg. Rayta</h4></div>
+                <div class="menu-item-price">₹70/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Bundi Rayta</h4></div>
+                <div class="menu-item-price">₹60/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Onion Rayta</h4></div>
+                <div class="menu-item-price">₹60/-</div>
+            </div>
+            <!-- Drinks -->
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Lassi</h4></div>
+                <div class="menu-item-price">₹40/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Butter Milk</h4></div>
+                <div class="menu-item-price">₹20/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Masala Butter Milk</h4></div>
+                <div class="menu-item-price">₹30/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Fresh Lime Water</h4></div>
+                <div class="menu-item-price">₹40/-</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info"><h4>Solkhadi</h4></div>
+                <div class="menu-item-price">₹30/-</div>
+            </div>
+        </div>
+
+        <!-- Menu Note -->
+        <div class="menu-note">
+            <p><i class="fas fa-info-circle"></i> Note: Extra will be charged. Monthly mess available here. | H/F = Half/Full</p>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="section-header">
+            <div class="section-badge">Testimonials</div>
+            <h2 class="section-title">What Our <span>Customers</span> Say</h2>
+            <p class="section-subtitle">Don't just take our word for it - hear from our satisfied customers!</p>
+        </div>
+
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">RP</div>
+                    <div class="review-info">
+                        <h4>Rohit Patil</h4>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-text">Amazing food and excellent taste. Chicken thali was fresh and delicious.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">SK</div>
+                    <div class="review-info">
+                        <h4>Sneha Kulkarni</h4>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-text">Very nice family restaurant. Paneer butter masala was excellent.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">AS</div>
+                    <div class="review-info">
+                        <h4>Amit Sharma</h4>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-text">Best chicken biryani in this area. Affordable and tasty.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">PD</div>
+                    <div class="review-info">
+                        <h4>Priya Deshmukh</h4>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-text">Loved the butter chicken and naan. Highly recommended.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">RJ</div>
+                    <div class="review-info">
+                        <h4>Rahul Jadhav</h4>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-text">Clean place, good service, and delicious food.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">NJ</div>
+                    <div class="review-info">
+                        <h4>Neha Joshi</h4>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-text">Veg thali is very tasty and budget friendly.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">KP</div>
+                    <div class="review-info">
+                        <h4>Kiran Pawar</h4>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-text">Chicken handi was excellent and fresh.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">PM</div>
+                    <div class="review-info">
+                        <h4>Pooja More</h4>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-text">Nice ambience and fast service.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">VS</div>
+                    <div class="review-info">
+                        <h4>Vikram Shinde</h4>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-text">Mutton thali was delicious and worth the price.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">AP</div>
+                    <div class="review-info">
+                        <h4>Anjali Patil</h4>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-text">Best veg and non-veg restaurant near SB Road.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <div class="section-badge">Visit Us</div>
+            <h2 class="section-title">Find <span>Us</span> Here</h2>
+            <p class="section-subtitle">Come visit us and experience the warmth of our hospitality</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-location-dot"></i>
+                    </div>
+                    <div class="contact-card-content">
+                        <h4>Our Location</h4>
+                        <p>Sadguru Jangali Maharaj Hos. Soc., Senapati Bapat Road, Opp. Pantaloons, Pune – 411016</p>
+                        <a href="https://maps.app.goo.gl/1kuca3nLTjzjQGhp9" target="_blank">Get Directions <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-card-content">
+                        <h4>Contact Us</h4>
+                        <p>
+                            <a href="tel:7822887750" style="color: var(--accent); text-decoration: none;">📞 7822887750</a><br>
+                            <a href="tel:9823760304" style="color: var(--accent); text-decoration: none;">📞 9823760304</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-card-content">
+                        <h4>Preparation Time</h4>
+                        <p>15-20 Minutes<br>
+                        <span style="color: var(--accent);">🏍️ Home Delivery Available</span></p>
+                    </div>
+                </div>
+
+                <div class="contact-buttons">
+                    <a href="tel:7822887750" class="contact-btn primary">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="https://maps.app.goo.gl/1kuca3nLTjzjQGhp9" target="_blank" class="contact-btn secondary">
+                        <i class="fas fa-map-marker-alt"></i> Find Us on Map
+                    </a>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.3001728855854!2d73.83200881489294!3d18.51557198741891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf9f14a2aa05%3A0x4d1c5f7ac8f54c04!2sSenapati%20Bapat%20Rd%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice Banner -->
+    <div class="notice-banner">
+        <p><i class="fas fa-calendar-check"></i> Monthly Mess Available <i class="fas fa-motorcycle"></i> Home Delivery <i class="fas fa-clock"></i> Fresh Food in 15-20 Minutes</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Swagat</h3>
+                <p>Experience the authentic taste of Indian cuisine at Swagat Veg-Nonveg Family Restaurant. We serve fresh, delicious food with love and warmth.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/917822887750" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://maps.app.goo.gl/1kuca3nLTjzjQGhp9" target="_blank"><i class="fab fa-google"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#menu"><i class="fas fa-chevron-right"></i> Menu</a></li>
+                    <li><a href="#reviews"><i class="fas fa-chevron-right"></i> Reviews</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Our Specials</h4>
+                <ul class="footer-links">
+                    <li><a href="#thali"><i class="fas fa-chevron-right"></i> Thali Special</a></li>
+                    <li><a href="#chicken"><i class="fas fa-chevron-right"></i> Chicken Dishes</a></li>
+                    <li><a href="#mutton"><i class="fas fa-chevron-right"></i> Mutton Dishes</a></li>
+                    <li><a href="#biryani"><i class="fas fa-chevron-right"></i> Biryani</a></li>
+                    <li><a href="#chinese"><i class="fas fa-chevron-right"></i> Chinese</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul class="footer-links footer-contact">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Senapati Bapat Road, Opp. Pantaloons, Pune – 411016</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <span>7822887750 / 9823760304</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <span>Prep Time: 15-20 Minutes</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2024 <span>Swagat Veg-Nonveg Family Restaurant</span>. All Rights Reserved. | Made with ❤️ in Pune</p>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/917822887750" target="_blank" class="float-btn whatsapp" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:7822887750" class="float-btn call" title="Call Now">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="#home" class="float-btn top" title="Back to Top">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                toggleMobileMenu();
+            });
+        });
+    </script>
+</body>
+</html>
