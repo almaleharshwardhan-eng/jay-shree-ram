@@ -202,16 +202,68 @@
             border: none;
         }
 
-        /* Hero Section */
+        /* Hero Section - No Photo */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, rgba(250, 248, 245, 0.9) 0%, rgba(232, 212, 196, 0.8) 100%),
-                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920') center/cover fixed;
+            background: linear-gradient(135deg, #faf8f5 0%, #f5ebe0 30%, #e8d4c4 60%, #d4a574 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(224, 123, 84, 0.1) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -20%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(5deg); }
+            66% { transform: translate(-20px, 20px) rotate(-5deg); }
+        }
+
+        /* Decorative Elements */
+        .hero-decoration {
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.08;
+            color: var(--brown);
+        }
+
+        .hero-decoration.top-left {
+            top: 10%;
+            left: 5%;
+        }
+
+        .hero-decoration.bottom-right {
+            bottom: 10%;
+            right: 5%;
+        }
+
+        .hero-decoration.center-right {
+            top: 40%;
+            right: 10%;
+            font-size: 6rem;
         }
 
         .hero-content {
@@ -360,7 +412,7 @@
         }
 
         .scroll-indicator a {
-            color: var(--primary);
+            color: var(--primary-dark);
             font-size: 1.5rem;
         }
 
@@ -422,7 +474,7 @@
             margin: 0 auto;
         }
 
-        /* About Section */
+        /* About Section - No Photos */
         .about {
             background: var(--white);
         }
@@ -436,67 +488,94 @@
             margin: 0 auto;
         }
 
-        .about-images {
+        /* Visual Element instead of Photos */
+        .about-visual {
             position: relative;
             height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .about-img {
-            position: absolute;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-hover);
-            transition: transform 0.3s ease;
-        }
-
-        .about-img:hover {
-            transform: scale(1.02);
-        }
-
-        .about-img.main {
-            width: 75%;
-            height: 380px;
-            top: 0;
-            left: 0;
-        }
-
-        .about-img.secondary {
-            width: 60%;
-            height: 250px;
-            bottom: 0;
-            right: 0;
-            border: 6px solid var(--white);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .experience-badge {
-            position: absolute;
-            bottom: 100px;
-            left: 55%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            padding: 25px 30px;
-            border-radius: var(--radius);
+        .visual-card {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--cream) 100%);
+            border-radius: 30px;
+            padding: 60px 40px;
             text-align: center;
             box-shadow: var(--shadow-hover);
-            z-index: 5;
+            position: relative;
+            overflow: hidden;
+            max-width: 400px;
         }
 
-        .experience-badge h3 {
+        .visual-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(224, 123, 84, 0.1) 0%, transparent 70%);
+        }
+
+        .visual-card-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .visual-card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .visual-card p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .visual-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .number {
             font-size: 2rem;
-            color: var(--white);
             font-weight: 700;
+            color: var(--accent);
+            display: block;
         }
 
-        .experience-badge p {
+        .stat-item .label {
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.9);
-            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* Floating decorations */
+        .floating-icon {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.6;
+            animation: floatIcon 4s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 20%; right: 5%; animation-delay: 1s; }
+        .floating-icon:nth-child(3) { bottom: 20%; left: 5%; animation-delay: 2s; }
+        .floating-icon:nth-child(4) { bottom: 10%; right: 15%; animation-delay: 3s; }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
         }
 
         .about-content h2 {
@@ -585,7 +664,7 @@
             font-size: 0.95rem;
         }
 
-        /* Menu Section - New Styles */
+        /* Menu Section */
         .menu {
             background: var(--cream);
             padding: 100px 0;
@@ -836,24 +915,6 @@
             transform: rotate(45deg);
         }
 
-        /* Section Divider */
-        .section-divider {
-            height: 60px;
-            background: linear-gradient(180deg, transparent 0%, var(--cream) 50%, transparent 100%);
-            position: relative;
-        }
-
-        .section-divider::before {
-            content: '• • •';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--primary);
-            font-size: 1.5rem;
-            letter-spacing: 10px;
-        }
-
         /* Menu Note */
         .menu-note {
             text-align: center;
@@ -1068,11 +1129,21 @@
             transform: translateY(-3px);
         }
 
+        .contact-btn.whatsapp {
+            background: #25d366;
+            color: var(--white);
+        }
+
+        .contact-btn.whatsapp:hover {
+            background: #128c7e;
+            transform: translateY(-3px);
+        }
+
         .map-container {
             border-radius: var(--radius);
             overflow: hidden;
             height: 100%;
-            min-height: 400px;
+            min-height: 450px;
             box-shadow: var(--shadow);
             border: 4px solid var(--white);
         }
@@ -1080,7 +1151,7 @@
         .map-container iframe {
             width: 100%;
             height: 100%;
-            min-height: 400px;
+            min-height: 450px;
         }
 
         /* Notice Banner */
@@ -1239,13 +1310,13 @@
         }
 
         .float-btn {
-            width: 52px;
-            height: 52px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: white;
             text-decoration: none;
             box-shadow: var(--shadow-hover);
@@ -1256,15 +1327,25 @@
             background: #25d366;
         }
 
+        .float-btn.whatsapp:hover {
+            background: #128c7e;
+            transform: scale(1.1);
+        }
+
         .float-btn.call {
             background: var(--accent);
+        }
+
+        .float-btn.call:hover {
+            background: var(--accent-light);
+            transform: scale(1.1);
         }
 
         .float-btn.top {
             background: var(--secondary);
         }
 
-        .float-btn:hover {
+        .float-btn.top:hover {
             transform: scale(1.1);
         }
 
@@ -1376,8 +1457,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .about-images {
-                height: 400px;
+            .about-visual {
+                height: auto;
                 order: -1;
             }
 
@@ -1516,6 +1597,18 @@
             .category-title {
                 font-size: 1.5rem;
             }
+
+            .visual-card {
+                padding: 40px 25px;
+            }
+
+            .visual-card h3 {
+                font-size: 2.5rem;
+            }
+
+            .visual-card-icon {
+                font-size: 4rem;
+            }
         }
     </style>
 </head>
@@ -1534,8 +1627,9 @@
             <li><a href="#menu" onclick="toggleMobileMenu()"><i class="fas fa-utensils"></i> Menu</a></li>
             <li><a href="#reviews" onclick="toggleMobileMenu()"><i class="fas fa-star"></i> Reviews</a></li>
             <li><a href="#contact" onclick="toggleMobileMenu()"><i class="fas fa-map-marker-alt"></i> Contact</a></li>
-            <li><a href="tel:7822887750"><i class="fas fa-phone"></i> Call: 7822887750</a></li>
             <li><a href="tel:9823760304"><i class="fas fa-phone"></i> Call: 9823760304</a></li>
+            <li><a href="tel:9158250707"><i class="fas fa-phone"></i> Call: 9158250707</a></li>
+            <li><a href="https://wa.me/919823760304" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
         </ul>
     </div>
 
@@ -1553,7 +1647,7 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="nav-buttons">
-            <a href="tel:7822887750" class="nav-btn call">
+            <a href="tel:9823760304" class="nav-btn call">
                 <i class="fas fa-phone"></i> Call Now
             </a>
             <a href="#menu" class="nav-btn order">
@@ -1567,6 +1661,11 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <!-- Decorative Elements -->
+        <div class="hero-decoration top-left">🍽️</div>
+        <div class="hero-decoration bottom-right">🍛</div>
+        <div class="hero-decoration center-right">🥘</div>
+
         <div class="hero-content">
             <div class="hero-badge">
                 <i class="fas fa-award"></i> Authentic Family Restaurant
@@ -1582,7 +1681,7 @@
                 <a href="#menu" class="hero-btn primary">
                     <i class="fas fa-utensils"></i> Explore Menu
                 </a>
-                <a href="tel:7822887750" class="hero-btn secondary">
+                <a href="tel:9823760304" class="hero-btn secondary">
                     <i class="fas fa-phone"></i> Order Now
                 </a>
             </div>
@@ -1613,18 +1712,34 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="about-container">
-            <div class="about-images">
-                <div class="about-img main">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800" alt="Restaurant Interior">
-                </div>
-                <div class="about-img secondary">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600" alt="Delicious Food">
-                </div>
-                <div class="experience-badge">
-                    <h3>100%</h3>
-                    <p>Fresh & Quality</p>
+            <!-- Visual Element instead of Photos -->
+            <div class="about-visual">
+                <div class="floating-icon">🍗</div>
+                <div class="floating-icon">🥗</div>
+                <div class="floating-icon">🍛</div>
+                <div class="floating-icon">🧀</div>
+                
+                <div class="visual-card">
+                    <span class="visual-card-icon">🍽️</span>
+                    <h3>Swagat</h3>
+                    <p>Where taste meets tradition</p>
+                    <div class="visual-stats">
+                        <div class="stat-item">
+                            <span class="number">100+</span>
+                            <span class="label">Menu Items</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">1000+</span>
+                            <span class="label">Happy Customers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">100%</span>
+                            <span class="label">Fresh Food</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="about-content">
                 <div class="section-badge">About Us</div>
                 <h2>Authentic Taste, <span>Family Warmth</span></h2>
@@ -1757,98 +1872,29 @@
             <div class="category-divider"></div>
         </div>
         <div class="menu-grid">
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Gobi Manchurian</h4><span class="variant">Dry / Gravy</span></div>
-                <div class="menu-item-price">₹150/160/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Manchurian</h4><span class="variant">Dry / Gravy</span></div>
-                <div class="menu-item-price">₹170/180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Chilly</h4><span class="variant">Dry / Gravy</span></div>
-                <div class="menu-item-price">₹190/200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Crispy</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. 65</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer 65</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mashroom Crispy Chilly</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Crispy</h4></div>
-                <div class="menu-item-price">₹220/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Chilly</h4><span class="variant">Dry / Gravy</span></div>
-                <div class="menu-item-price">₹190/200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Manchurian</h4><span class="variant">Dry / Gravy</span></div>
-                <div class="menu-item-price">₹190/200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Lolipop</h4><span class="variant">Dry / Gravy</span></div>
-                <div class="menu-item-price">₹180/190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken 65</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Crispy</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Lolipop Half</h4></div>
-                <div class="menu-item-price">₹100/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Tikka Dry</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Kassori Kabab</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Malai Kabab</h4></div>
-                <div class="menu-item-price">₹210/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Pahadi Kabab</h4></div>
-                <div class="menu-item-price">₹220/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Tandoori Chicken</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹190/330/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Tikka Dry</h4></div>
-                <div class="menu-item-price">₹210/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Harabara Kabab</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Malai Kabab</h4></div>
-                <div class="menu-item-price">₹220/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Pahadi Kabab</h4></div>
-                <div class="menu-item-price">₹230/-</div>
-            </div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Gobi Manchurian</h4><span class="variant">Dry / Gravy</span></div><div class="menu-item-price">₹150/160/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Manchurian</h4><span class="variant">Dry / Gravy</span></div><div class="menu-item-price">₹170/180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Chilly</h4><span class="variant">Dry / Gravy</span></div><div class="menu-item-price">₹190/200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Crispy</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. 65</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer 65</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mashroom Crispy Chilly</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Crispy</h4></div><div class="menu-item-price">₹220/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Chilly</h4><span class="variant">Dry / Gravy</span></div><div class="menu-item-price">₹190/200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Manchurian</h4><span class="variant">Dry / Gravy</span></div><div class="menu-item-price">₹190/200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Lolipop</h4><span class="variant">Dry / Gravy</span></div><div class="menu-item-price">₹180/190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken 65</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Crispy</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Lolipop Half</h4></div><div class="menu-item-price">₹100/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Tikka Dry</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Kassori Kabab</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Malai Kabab</h4></div><div class="menu-item-price">₹210/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Pahadi Kabab</h4></div><div class="menu-item-price">₹220/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Tandoori Chicken</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹190/330/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Tikka Dry</h4></div><div class="menu-item-price">₹210/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Harabara Kabab</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Malai Kabab</h4></div><div class="menu-item-price">₹220/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Pahadi Kabab</h4></div><div class="menu-item-price">₹230/-</div></div>
         </div>
     </div>
 
@@ -1861,46 +1907,16 @@
             <div class="category-divider"></div>
         </div>
         <div class="menu-grid">
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Tomato Soup</h4></div>
-                <div class="menu-item-price">₹100/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Clear Soup</h4></div>
-                <div class="menu-item-price">₹90/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Sweet Corn Soup</h4></div>
-                <div class="menu-item-price">₹100/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Hot Sour Soup</h4></div>
-                <div class="menu-item-price">₹90/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Manchow Soup</h4></div>
-                <div class="menu-item-price">₹90/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Cream of Chicken Soup</h4></div>
-                <div class="menu-item-price">₹120/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Clear Soup</h4></div>
-                <div class="menu-item-price">₹100/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Sweet Corn Soup</h4></div>
-                <div class="menu-item-price">₹110/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Manchow Soup</h4></div>
-                <div class="menu-item-price">₹120/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Hot & Sour Soup</h4></div>
-                <div class="menu-item-price">₹110/-</div>
-            </div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Tomato Soup</h4></div><div class="menu-item-price">₹100/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Clear Soup</h4></div><div class="menu-item-price">₹90/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Sweet Corn Soup</h4></div><div class="menu-item-price">₹100/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Hot Sour Soup</h4></div><div class="menu-item-price">₹90/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Manchow Soup</h4></div><div class="menu-item-price">₹90/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Cream of Chicken Soup</h4></div><div class="menu-item-price">₹120/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Clear Soup</h4></div><div class="menu-item-price">₹100/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Sweet Corn Soup</h4></div><div class="menu-item-price">₹110/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Manchow Soup</h4></div><div class="menu-item-price">₹120/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Hot & Sour Soup</h4></div><div class="menu-item-price">₹110/-</div></div>
         </div>
     </div>
 
@@ -1913,162 +1929,45 @@
             <div class="category-divider"></div>
         </div>
         <div class="menu-grid">
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Alu Mutter</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Gobi Masala</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chana Masala</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Rajma Masala</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Dam Alo Kashmiri</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Bhindi Masala</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Baigan Masala</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Green Peas Masala</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Kaju Curry</h4></div>
-                <div class="menu-item-price">₹210/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Kaju Masala</h4></div>
-                <div class="menu-item-price">₹230/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Kaju Paneer</h4></div>
-                <div class="menu-item-price">₹240/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Kaju Mashroom</h4></div>
-                <div class="menu-item-price">₹240/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mix. Veg</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Malai Kofta</h4></div>
-                <div class="menu-item-price">₹230/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Methi Malai Mutter</h4></div>
-                <div class="menu-item-price">₹220/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mushroom Kadai</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mushroom Tawa</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mashroom Hydrabadi</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Palak Lassoni</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Plain Palak</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Shev Bhaji</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Keema</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Kolhapuri</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Makhanwala</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Bhoona</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Tawa</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Handi</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹260/400/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Kadai</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Maratha</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Kofta</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Hydrabadi</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Patiyala</h4></div>
-                <div class="menu-item-price">₹220/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Do Pyaza</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Maharaja</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Dal Fry</h4></div>
-                <div class="menu-item-price">₹120/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Dal Tadka</h4></div>
-                <div class="menu-item-price">₹130/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Dal Makhani</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Dal Maharani</h4></div>
-                <div class="menu-item-price">₹150/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Dal Methi</h4></div>
-                <div class="menu-item-price">₹140/-</div>
-            </div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Alu Mutter</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Gobi Masala</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chana Masala</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Rajma Masala</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Dam Alo Kashmiri</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Bhindi Masala</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Baigan Masala</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Green Peas Masala</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Kaju Curry</h4></div><div class="menu-item-price">₹210/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Kaju Masala</h4></div><div class="menu-item-price">₹230/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Kaju Paneer</h4></div><div class="menu-item-price">₹240/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Kaju Mashroom</h4></div><div class="menu-item-price">₹240/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mix. Veg</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Malai Kofta</h4></div><div class="menu-item-price">₹230/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Methi Malai Mutter</h4></div><div class="menu-item-price">₹220/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mushroom Kadai</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mushroom Tawa</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mashroom Hydrabadi</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Palak Lassoni</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Plain Palak</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Shev Bhaji</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Keema</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Kolhapuri</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Makhanwala</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Bhoona</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Tawa</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Handi</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹260/400/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Kadai</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Maratha</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Kofta</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Hydrabadi</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Patiyala</h4></div><div class="menu-item-price">₹220/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Do Pyaza</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Maharaja</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Dal Fry</h4></div><div class="menu-item-price">₹120/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Dal Tadka</h4></div><div class="menu-item-price">₹130/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Dal Makhani</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Dal Maharani</h4></div><div class="menu-item-price">₹150/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Dal Methi</h4></div><div class="menu-item-price">₹140/-</div></div>
         </div>
     </div>
 
@@ -2081,90 +1980,27 @@
             <div class="category-divider"></div>
         </div>
         <div class="menu-grid">
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Palak Paneer</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Toofani</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Kadai</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Kofta</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Hydrabadi</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Methi Masala</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Angara</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Bhurji</h4></div>
-                <div class="menu-item-price">₹210/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Mutter</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Mushroom</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Kolhapuri</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Tikka Masala</h4></div>
-                <div class="menu-item-price">₹210/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Pasand</h4></div>
-                <div class="menu-item-price">₹240/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Butter Masala</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Maratha</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Masala</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Chatpata</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Chingari</h4></div>
-                <div class="menu-item-price">₹210/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Shahi Paneer</h4></div>
-                <div class="menu-item-price">₹230/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Handi</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹280/430/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Pahadi Masala</h4></div>
-                <div class="menu-item-price">₹230/-</div>
-            </div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Palak Paneer</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Toofani</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Kadai</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Kofta</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Hydrabadi</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Methi Masala</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Angara</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Bhurji</h4></div><div class="menu-item-price">₹210/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Mutter</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Mushroom</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Kolhapuri</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Tikka Masala</h4></div><div class="menu-item-price">₹210/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Pasand</h4></div><div class="menu-item-price">₹240/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Butter Masala</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Maratha</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Masala</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Chatpata</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Chingari</h4></div><div class="menu-item-price">₹210/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Shahi Paneer</h4></div><div class="menu-item-price">₹230/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Handi</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹280/430/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Pahadi Masala</h4></div><div class="menu-item-price">₹230/-</div></div>
         </div>
     </div>
 
@@ -2177,106 +2013,31 @@
             <div class="category-divider"></div>
         </div>
         <div class="menu-grid">
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Masala</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Curry</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Kadai</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Hydrabadi</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Kolhapuri</h4></div>
-                <div class="menu-item-price">₹210/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Fry</h4></div>
-                <div class="menu-item-price">₹190/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Moglai</h4></div>
-                <div class="menu-item-price">₹220/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Sukka</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Handi</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹300/520/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Malwani</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹350/600/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Murgh Musallam</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹360/650/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Methi Masala</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Egg Masala</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Butter Chicken</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹350/650/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Delhi Butter Chicken</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹370/700/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Kharda</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Patyala</h4></div>
-                <div class="menu-item-price">₹300/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Maratha</h4></div>
-                <div class="menu-item-price">₹220/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Tawa Masala</h4></div>
-                <div class="menu-item-price">₹250/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Tikka Masala</h4></div>
-                <div class="menu-item-price">₹230/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Pahadi</h4></div>
-                <div class="menu-item-price">₹240/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Kheema Masala</h4></div>
-                <div class="menu-item-price">₹230/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Aalni Rassa</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Kala Masala</h4></div>
-                <div class="menu-item-price">₹230/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chi. Kala Masala Handi</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹350/620/-</div>
-            </div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Masala</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Curry</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Kadai</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Hydrabadi</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Kolhapuri</h4></div><div class="menu-item-price">₹210/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Fry</h4></div><div class="menu-item-price">₹190/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Moglai</h4></div><div class="menu-item-price">₹220/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Sukka</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Handi</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹300/520/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Malwani</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹350/600/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Murgh Musallam</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹360/650/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Methi Masala</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Egg Masala</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Butter Chicken</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹350/650/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Delhi Butter Chicken</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹370/700/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Kharda</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Patyala</h4></div><div class="menu-item-price">₹300/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Maratha</h4></div><div class="menu-item-price">₹220/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Tawa Masala</h4></div><div class="menu-item-price">₹250/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Tikka Masala</h4></div><div class="menu-item-price">₹230/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Pahadi</h4></div><div class="menu-item-price">₹240/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Kheema Masala</h4></div><div class="menu-item-price">₹230/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Aalni Rassa</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Kala Masala</h4></div><div class="menu-item-price">₹230/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chi. Kala Masala Handi</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹350/620/-</div></div>
         </div>
     </div>
 
@@ -2289,66 +2050,21 @@
             <div class="category-divider"></div>
         </div>
         <div class="menu-grid">
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Handi</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹500/780/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Malwani</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹560/870/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Kadai</h4></div>
-                <div class="menu-item-price">₹350/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Kala Masala</h4></div>
-                <div class="menu-item-price">₹350/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Sukka / Fry</h4></div>
-                <div class="menu-item-price">₹300/310/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Masala</h4></div>
-                <div class="menu-item-price">₹330/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Curry</h4></div>
-                <div class="menu-item-price">₹310/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Kolhapuri</h4></div>
-                <div class="menu-item-price">₹330/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Rogan Josh</h4></div>
-                <div class="menu-item-price">₹370/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Hydrabadi</h4></div>
-                <div class="menu-item-price">₹350/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Kheema Masala</h4></div>
-                <div class="menu-item-price">₹330/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Kharda</h4></div>
-                <div class="menu-item-price">₹350/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Kheema Fry</h4></div>
-                <div class="menu-item-price">₹350/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Aalni Rassa</h4></div>
-                <div class="menu-item-price">₹330/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Nonveg Gravy</h4></div>
-                <div class="menu-item-price">₹110/-</div>
-            </div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Handi</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹500/780/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Malwani</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹560/870/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Kadai</h4></div><div class="menu-item-price">₹350/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Kala Masala</h4></div><div class="menu-item-price">₹350/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Sukka / Fry</h4></div><div class="menu-item-price">₹300/310/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Masala</h4></div><div class="menu-item-price">₹330/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Curry</h4></div><div class="menu-item-price">₹310/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Kolhapuri</h4></div><div class="menu-item-price">₹330/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Rogan Josh</h4></div><div class="menu-item-price">₹370/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Hydrabadi</h4></div><div class="menu-item-price">₹350/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Kheema Masala</h4></div><div class="menu-item-price">₹330/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Kharda</h4></div><div class="menu-item-price">₹350/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Kheema Fry</h4></div><div class="menu-item-price">₹350/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Aalni Rassa</h4></div><div class="menu-item-price">₹330/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Nonveg Gravy</h4></div><div class="menu-item-price">₹110/-</div></div>
         </div>
     </div>
 
@@ -2361,96 +2077,28 @@
             <div class="category-divider"></div>
         </div>
         <div class="menu-grid">
-            <!-- Veg Biryani -->
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Biryani</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹140/200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Biryani</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹120/180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Hydrabadi Biryani</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹130/200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Pulav</h4></div>
-                <div class="menu-item-price">₹180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Pulav</h4></div>
-                <div class="menu-item-price">₹200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Steam Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹80/110/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Jeera Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹90/120/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Lemon Rice</h4></div>
-                <div class="menu-item-price">₹160/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Curd Rice</h4></div>
-                <div class="menu-item-price">₹160/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Masala Rice</h4></div>
-                <div class="menu-item-price">₹160/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Dal Khichadi Rice</h4></div>
-                <div class="menu-item-price">₹150/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Dal Khichadi Tadka</h4></div>
-                <div class="menu-item-price">₹160/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Garlic Rice</h4></div>
-                <div class="menu-item-price">₹170/-</div>
-            </div>
-            <!-- Nonveg Biryani -->
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Biryani</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹230/380/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Hydrabadi Biryani</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹250/400/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Mutton Dum Biryani</h4></div>
-                <div class="menu-item-price">₹330/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Biryani</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹130/200/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Hydrabadi Biryani</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹150/220/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Biryani Boneless</h4></div>
-                <div class="menu-item-price">₹280/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Egg Biryani</h4></div>
-                <div class="menu-item-price">₹150/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Dum Biryani</h4></div>
-                <div class="menu-item-price">₹260/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Tandoor Biryani</h4></div>
-                <div class="menu-item-price">₹330/-</div>
-            </div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Biryani</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹140/200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Biryani</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹120/180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Hydrabadi Biryani</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹130/200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Pulav</h4></div><div class="menu-item-price">₹180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Pulav</h4></div><div class="menu-item-price">₹200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Steam Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹80/110/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Jeera Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹90/120/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Lemon Rice</h4></div><div class="menu-item-price">₹160/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Curd Rice</h4></div><div class="menu-item-price">₹160/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Masala Rice</h4></div><div class="menu-item-price">₹160/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Dal Khichadi Rice</h4></div><div class="menu-item-price">₹150/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Dal Khichadi Tadka</h4></div><div class="menu-item-price">₹160/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Garlic Rice</h4></div><div class="menu-item-price">₹170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Biryani</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹230/380/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Hydrabadi Biryani</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹250/400/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Mutton Dum Biryani</h4></div><div class="menu-item-price">₹330/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Biryani</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹130/200/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Hydrabadi Biryani</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹150/220/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Biryani Boneless</h4></div><div class="menu-item-price">₹280/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Egg Biryani</h4></div><div class="menu-item-price">₹150/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Dum Biryani</h4></div><div class="menu-item-price">₹260/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Tandoor Biryani</h4></div><div class="menu-item-price">₹330/-</div></div>
         </div>
     </div>
 
@@ -2463,78 +2111,24 @@
             <div class="category-divider"></div>
         </div>
         <div class="menu-grid">
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Triple Fried Rice</h4></div>
-                <div class="menu-item-price">₹210/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Hakka Noodles</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹100/150/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Schezwan Noodles</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹110/160/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Singapuri Noodles</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹110/180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Fried Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹100/150/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Schezwan Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹110/160/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Hongkong Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹110/170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Hongkong Noodles</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹110/170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Egg Fried Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹100/150/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Egg Schezwan Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹110/160/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Fried Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹120/180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Schezwan Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹130/180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Singapuri Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹120/180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Hongkong Rice</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹130/180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Triple Rice</h4></div>
-                <div class="menu-item-price">₹220/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Hakka Noodles</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹120/170/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Schezwan Noodles</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹130/180/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chicken Singapuri Noodles</h4><span class="variant">H/F</span></div>
-                <div class="menu-item-price">₹130/180/-</div>
-            </div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Triple Fried Rice</h4></div><div class="menu-item-price">₹210/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Hakka Noodles</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹100/150/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Schezwan Noodles</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹110/160/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Singapuri Noodles</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹110/180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Fried Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹100/150/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Schezwan Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹110/160/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Hongkong Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹110/170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Hongkong Noodles</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹110/170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Egg Fried Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹100/150/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Egg Schezwan Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹110/160/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Fried Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹120/180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Schezwan Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹130/180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Singapuri Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹120/180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Hongkong Rice</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹130/180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Triple Rice</h4></div><div class="menu-item-price">₹220/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Hakka Noodles</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹120/170/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Schezwan Noodles</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹130/180/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chicken Singapuri Noodles</h4><span class="variant">H/F</span></div><div class="menu-item-price">₹130/180/-</div></div>
         </div>
     </div>
 
@@ -2547,34 +2141,13 @@
             <div class="category-divider"></div>
         </div>
         <div class="menu-grid">
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Egg Maratha</h4></div>
-                <div class="menu-item-price">₹130/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Egg Fry</h4></div>
-                <div class="menu-item-price">₹110/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Egg Masala</h4></div>
-                <div class="menu-item-price">₹120/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Egg Curry</h4></div>
-                <div class="menu-item-price">₹110/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Egg Omlet</h4></div>
-                <div class="menu-item-price">₹70/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Egg Bhurji</h4></div>
-                <div class="menu-item-price">₹100/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Egg Boil</h4></div>
-                <div class="menu-item-price">₹40/-</div>
-            </div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Egg Maratha</h4></div><div class="menu-item-price">₹130/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Egg Fry</h4></div><div class="menu-item-price">₹110/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Egg Masala</h4></div><div class="menu-item-price">₹120/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Egg Curry</h4></div><div class="menu-item-price">₹110/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Egg Omlet</h4></div><div class="menu-item-price">₹70/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Egg Bhurji</h4></div><div class="menu-item-price">₹100/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Egg Boil</h4></div><div class="menu-item-price">₹40/-</div></div>
         </div>
     </div>
 
@@ -2587,130 +2160,37 @@
             <div class="category-divider"></div>
         </div>
         <div class="menu-grid">
-            <!-- Tandoor -->
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Roti</h4></div>
-                <div class="menu-item-price">₹15/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Butter Roti</h4></div>
-                <div class="menu-item-price">₹20/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Naan</h4></div>
-                <div class="menu-item-price">₹35/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Butter Naan</h4></div>
-                <div class="menu-item-price">₹45/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Garlic Butter Naan</h4></div>
-                <div class="menu-item-price">₹60/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paratha</h4></div>
-                <div class="menu-item-price">₹35/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Butter Paratha</h4></div>
-                <div class="menu-item-price">₹40/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Kulcha</h4></div>
-                <div class="menu-item-price">₹40/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Butter Kulcha</h4></div>
-                <div class="menu-item-price">₹45/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Chapati / Butter</h4></div>
-                <div class="menu-item-price">₹12/15/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Bhakri</h4></div>
-                <div class="menu-item-price">₹20/-</div>
-            </div>
-            <!-- Stuffed Paratha -->
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Alu Paratha</h4></div>
-                <div class="menu-item-price">₹85/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Gobi Paratha</h4></div>
-                <div class="menu-item-price">₹85/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Paneer Paratha</h4></div>
-                <div class="menu-item-price">₹95/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Cheese Alu Paratha</h4></div>
-                <div class="menu-item-price">₹105/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Stuff Paratha</h4></div>
-                <div class="menu-item-price">₹85/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Methi Paratha</h4></div>
-                <div class="menu-item-price">₹100/-</div>
-            </div>
-            <!-- Papad -->
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Rosted Papad</h4></div>
-                <div class="menu-item-price">₹20/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Masala Papad</h4></div>
-                <div class="menu-item-price">₹40/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Fry Papad</h4></div>
-                <div class="menu-item-price">₹30/-</div>
-            </div>
-            <!-- Salad & Raita -->
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Green Salad</h4></div>
-                <div class="menu-item-price">₹80/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Veg. Rayta</h4></div>
-                <div class="menu-item-price">₹70/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Bundi Rayta</h4></div>
-                <div class="menu-item-price">₹60/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Onion Rayta</h4></div>
-                <div class="menu-item-price">₹60/-</div>
-            </div>
-            <!-- Drinks -->
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Lassi</h4></div>
-                <div class="menu-item-price">₹40/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Butter Milk</h4></div>
-                <div class="menu-item-price">₹20/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Masala Butter Milk</h4></div>
-                <div class="menu-item-price">₹30/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Fresh Lime Water</h4></div>
-                <div class="menu-item-price">₹40/-</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-info"><h4>Solkhadi</h4></div>
-                <div class="menu-item-price">₹30/-</div>
-            </div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Roti</h4></div><div class="menu-item-price">₹15/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Butter Roti</h4></div><div class="menu-item-price">₹20/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Naan</h4></div><div class="menu-item-price">₹35/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Butter Naan</h4></div><div class="menu-item-price">₹45/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Garlic Butter Naan</h4></div><div class="menu-item-price">₹60/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paratha</h4></div><div class="menu-item-price">₹35/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Butter Paratha</h4></div><div class="menu-item-price">₹40/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Kulcha</h4></div><div class="menu-item-price">₹40/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Butter Kulcha</h4></div><div class="menu-item-price">₹45/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Chapati / Butter</h4></div><div class="menu-item-price">₹12/15/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Bhakri</h4></div><div class="menu-item-price">₹20/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Alu Paratha</h4></div><div class="menu-item-price">₹85/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Gobi Paratha</h4></div><div class="menu-item-price">₹85/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Paneer Paratha</h4></div><div class="menu-item-price">₹95/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Cheese Alu Paratha</h4></div><div class="menu-item-price">₹105/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Stuff Paratha</h4></div><div class="menu-item-price">₹85/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Methi Paratha</h4></div><div class="menu-item-price">₹100/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Rosted Papad</h4></div><div class="menu-item-price">₹20/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Masala Papad</h4></div><div class="menu-item-price">₹40/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Fry Papad</h4></div><div class="menu-item-price">₹30/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Green Salad</h4></div><div class="menu-item-price">₹80/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Veg. Rayta</h4></div><div class="menu-item-price">₹70/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Bundi Rayta</h4></div><div class="menu-item-price">₹60/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Onion Rayta</h4></div><div class="menu-item-price">₹60/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Lassi</h4></div><div class="menu-item-price">₹40/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Butter Milk</h4></div><div class="menu-item-price">₹20/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Masala Butter Milk</h4></div><div class="menu-item-price">₹30/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Fresh Lime Water</h4></div><div class="menu-item-price">₹40/-</div></div>
+            <div class="menu-item"><div class="menu-item-info"><h4>Solkhadi</h4></div><div class="menu-item-price">₹30/-</div></div>
         </div>
 
-        <!-- Menu Note -->
         <div class="menu-note">
             <p><i class="fas fa-info-circle"></i> Note: Extra will be charged. Monthly mess available here. | H/F = Half/Full</p>
         </div>
@@ -2730,126 +2210,97 @@
                     <div class="review-avatar">RP</div>
                     <div class="review-info">
                         <h4>Rohit Patil</h4>
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
                 <p class="review-text">Amazing food and excellent taste. Chicken thali was fresh and delicious.</p>
             </div>
-
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-avatar">SK</div>
                     <div class="review-info">
                         <h4>Sneha Kulkarni</h4>
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
                 <p class="review-text">Very nice family restaurant. Paneer butter masala was excellent.</p>
             </div>
-
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-avatar">AS</div>
                     <div class="review-info">
                         <h4>Amit Sharma</h4>
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
                 <p class="review-text">Best chicken biryani in this area. Affordable and tasty.</p>
             </div>
-
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-avatar">PD</div>
                     <div class="review-info">
                         <h4>Priya Deshmukh</h4>
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
                 <p class="review-text">Loved the butter chicken and naan. Highly recommended.</p>
             </div>
-
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-avatar">RJ</div>
                     <div class="review-info">
                         <h4>Rahul Jadhav</h4>
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
                 <p class="review-text">Clean place, good service, and delicious food.</p>
             </div>
-
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-avatar">NJ</div>
                     <div class="review-info">
                         <h4>Neha Joshi</h4>
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
                 <p class="review-text">Veg thali is very tasty and budget friendly.</p>
             </div>
-
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-avatar">KP</div>
                     <div class="review-info">
                         <h4>Kiran Pawar</h4>
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
                 <p class="review-text">Chicken handi was excellent and fresh.</p>
             </div>
-
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-avatar">PM</div>
                     <div class="review-info">
                         <h4>Pooja More</h4>
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
                 <p class="review-text">Nice ambience and fast service.</p>
             </div>
-
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-avatar">VS</div>
                     <div class="review-info">
                         <h4>Vikram Shinde</h4>
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
                 <p class="review-text">Mutton thali was delicious and worth the price.</p>
             </div>
-
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-avatar">AP</div>
                     <div class="review-info">
                         <h4>Anjali Patil</h4>
-                        <div class="review-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
                 <p class="review-text">Best veg and non-veg restaurant near SB Road.</p>
@@ -2885,8 +2336,8 @@
                     <div class="contact-card-content">
                         <h4>Contact Us</h4>
                         <p>
-                            <a href="tel:7822887750" style="color: var(--accent); text-decoration: none;">📞 7822887750</a><br>
-                            <a href="tel:9823760304" style="color: var(--accent); text-decoration: none;">📞 9823760304</a>
+                            <a href="tel:9823760304" style="color: var(--accent); text-decoration: none; font-weight: 600;">📞 9823760304</a><br>
+                            <a href="tel:9158250707" style="color: var(--accent); text-decoration: none; font-weight: 600;">📞 9158250707</a>
                         </p>
                     </div>
                 </div>
@@ -2898,13 +2349,16 @@
                     <div class="contact-card-content">
                         <h4>Preparation Time</h4>
                         <p>15-20 Minutes<br>
-                        <span style="color: var(--accent);">🏍️ Home Delivery Available</span></p>
+                        <span style="color: var(--accent); font-weight: 500;">🏍️ Home Delivery Available</span></p>
                     </div>
                 </div>
 
                 <div class="contact-buttons">
-                    <a href="tel:7822887750" class="contact-btn primary">
+                    <a href="tel:9823760304" class="contact-btn primary">
                         <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="https://wa.me/919823760304?text=Hi%2C%20I%20would%20like%20to%20place%20an%20order%20from%20Swagat%20Restaurant" target="_blank" class="contact-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
                     </a>
                     <a href="https://maps.app.goo.gl/1kuca3nLTjzjQGhp9" target="_blank" class="contact-btn secondary">
                         <i class="fas fa-map-marker-alt"></i> Find Us on Map
@@ -2914,7 +2368,7 @@
 
             <div class="map-container">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.3001728855854!2d73.83200881489294!3d18.51557198741891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf9f14a2aa05%3A0x4d1c5f7ac8f54c04!2sSenapati%20Bapat%20Rd%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d945.0651892813052!2d73.82975906952516!3d18.524862498766847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf8c3c4c5b47%3A0xfcf29b0cbb58be0!2sPantaloons%20(Senapati%20Bapat%20Road%2C%20Pune)!5e0!3m2!1sen!2sin!4v1703123456789!5m2!1sen!2sin"
                     style="border:0;" 
                     allowfullscreen="" 
                     loading="lazy" 
@@ -2938,7 +2392,7 @@
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/917822887750" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://wa.me/919823760304?text=Hi%2C%20I%20would%20like%20to%20place%20an%20order%20from%20Swagat%20Restaurant" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     <a href="https://maps.app.goo.gl/1kuca3nLTjzjQGhp9" target="_blank"><i class="fab fa-google"></i></a>
                 </div>
             </div>
@@ -2974,7 +2428,7 @@
                     </li>
                     <li>
                         <i class="fas fa-phone"></i>
-                        <span>7822887750 / 9823760304</span>
+                        <span>9823760304 / 9158250707</span>
                     </li>
                     <li>
                         <i class="fas fa-clock"></i>
@@ -2991,10 +2445,10 @@
 
     <!-- Floating Buttons -->
     <div class="floating-buttons">
-        <a href="https://wa.me/917822887750" target="_blank" class="float-btn whatsapp" title="WhatsApp">
+        <a href="https://wa.me/919823760304?text=Hi%2C%20I%20would%20like%20to%20place%20an%20order%20from%20Swagat%20Restaurant" target="_blank" class="float-btn whatsapp" title="WhatsApp Us">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="tel:7822887750" class="float-btn call" title="Call Now">
+        <a href="tel:9823760304" class="float-btn call" title="Call Now">
             <i class="fas fa-phone"></i>
         </a>
         <a href="#home" class="float-btn top" title="Back to Top">
@@ -3032,13 +2486,6 @@
                         block: 'start'
                     });
                 }
-            });
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                toggleMobileMenu();
             });
         });
     </script>
